@@ -18,7 +18,7 @@ The NVIDA architecture consited of sequence of four 2D convolutions with RELU ac
 ![Figure 1](./Figures/NVIDA_Network.png?raw=true)Figure 1: Illustration of the NVIDA network used in this study.
 
 Each image fed into the network was preprocessed as follows: the upper and lower edges of the image is cropped then the image is normalized.  The upper 60 pixels of the image were cropped to minimize the horizon background clutter while simulatneously providing a full view of the road as it vanished into the image horizon.  The low 20 pixels of the image were cropped out because the lower section of the image is dominate by a static view of the car hood.  Because of this, it was assumed that the lower 20 pixels would not contribute to the training justifying their removal. Figure 2 illustrates the pre- and post-cropping of the camera image.
-![Figure 2](./Figuress/Cropping_Example.png)Figure 2: Example of the pre and post cropped camera image.
+![Figure 2](./Figures/Cropping_Example.png)Figure 2: Example of the pre and post cropped camera image.
 
 The cropped image was then normalized as follows:
       normalized image = (cropped image)/255.0 - 0.5
