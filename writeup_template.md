@@ -52,55 +52,23 @@ The training data was further augmented by mirroring each camera around it's ver
 This augmented data (three cameras plus mirroring) was used as the training input.
 
 ## Model Architecture and Training Strategy
+## 1. Solution Design Approach
+The overall strategy for deriving a model architecture was to first consider a LeNet architecture followed by the NVIDA architecture.  The primary difference between the two architectures was 1) an additional convolutional layer with NVIDA and 2) the additional of maxpooling layers in the LeNet.  The next step was to systematically combine the training datasets until a combination of training sets was obtained that would yield a trained network that could successfully navigate the car around course one in autonomous mode.
 
-### 1. Solution Design Approach
+The best combination of driving datasets was set 1, 4 and 6.  The combination of these training datasets provided a total of 5 laps around course 1 in the forward direction and 4 laps in the reverse direction.  The addition of a zigzag path or just passing the dirt section did not improve the performance of the trained network.
 
-The overall strategy for deriving a model architecture was to ...
+It was possible to successfully train both the LeNet and the NVIDA models to autonomously drive the car around course one.  However, it was subjectively determined that the NVIDA model was superior to the LeNet model (faster processing and better steering control).  Therefore, the results of the NVIDA model were submitted for review.
 
-My first step was to use a convolution neural network model similar to the ... I thought this model might be appropriate because ...
-
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
-
-To combat the overfitting, I modified the model so that ...
-
-Then I ... 
-
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
+The driving data sets were split into a training set and a validation set using and 80/20 split.  The training set was used for the model fitting while the validation set was used for evaluation of overfitting.  Specifically a early stoppint callback was employed to prevent overfitting (see "Overfitting reduction" for more details).
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
-####2. Final Model Architecture
+### 2. Final Model Architecture
+See Figure 1 for illustration of the final model architecture.
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
+### 3. Creation of the Training Set & Training Process
 
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
+The best combination of driving datasets was set 1, 4 and 6.  The combination of these training datasets provided a total of 5 laps around course 1 in the forward direction and 4 laps in the reverse direction.  The addition of a zigzag path or just passing the dirt section did not improve the performance of the trained network.
 
-![alt text][image1]
-
-####3. Creation of the Training Set & Training Process
-
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
-
-![alt text][image2]
-
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
-
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
-
-Then I repeated this process on track two in order to get more data points.
-
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
-
-![alt text][image6]
-![alt text][image7]
-
-Etc ....
-
-After the collection process, I had X number of data points. I then preprocessed this data by ...
-
-
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
-
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+## Simulation
+Video.mp4 is a video showing the car successfully navigating course 1.
