@@ -9,7 +9,13 @@ The included files are:
 * video.mp4 is a video illustrating a successful lap of the course in autonomous mode
 * writeup_report.md summarizing the results
 
-## *Model Architecture and Training Strategy*
+## Quality of code
+### 1. Successfully autonomous operation
+The model provided (model.py and model.h5) successfully operate the simulation in autonomous mode as demonstrated by the video (video.mp4).
+### 2. Code comments
+The python script (model.py) is extensively commented which clearly explain the steps and operations of the script.  In addition, generator functions are used in an effort to reduce the memory requirements when the code is executed.
+
+## Model Architecture and Training Strategy
 ### 1. Model architecture
 Two models were constructed and evaluated.  The first model was based on the LeNet architecture and the second model was based on the NVIDA architecture described in this NVIDA [blog post](https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars).  While it was demonstrated that it is possible to successfully train the LeNet model to safely steer the car around the track, this write up will focus on the application of the NVIDA architecture.
 
