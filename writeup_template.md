@@ -1,12 +1,12 @@
 # Writeup Template--Behavioral Cloning P3
 
-## *Rubric Points*
-### 1. This submission includes all required files and can be used to run the simulator in autonomous mode.
+# *Rubric Points*
+## All required files necessary run the simulator in autonomous mode are included.
 The included files are:
 * model.py containing the script to create and train the model
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network 
-* run1.mp4 is a video illustrating a successful lap of the course in autonomous mode
+* video.mp4 is a video illustrating a successful lap of the course in autonomous mode
 * writeup_report.md summarizing the results
 
 ## *Model Architecture and Training Strategy*
@@ -15,10 +15,10 @@ Two models were constructed and evaluated.  The first model was based on the LeN
 
 The NVIDA architecture consited of sequence of four 2D convolutions with RELU activations followed by a sequence of four dense layers with linear activations.  The network parameters (convolution kernals, strides and dense layer sizes) are illustrated in Figure 1 which was obtained from the NVIDA post.
 
-![Figure 1](./NVIDA_Network.png?raw=true)Figure 1: Illustration of the NVIDA network used in this study.
+![Figure 1](./Figures/NVIDA_Network.png?raw=true)Figure 1: Illustration of the NVIDA network used in this study.
 
 Each image fed into the network was preprocessed as follows: the upper and lower edges of the image is cropped then the image is normalized.  The upper 60 pixels of the image were cropped to minimize the horizon background clutter while simulatneously providing a full view of the road as it vanished into the image horizon.  The low 20 pixels of the image were cropped out because the lower section of the image is dominate by a static view of the car hood.  Because of this, it was assumed that the lower 20 pixels would not contribute to the training justifying their removal. Figure 2 illustrates the pre- and post-cropping of the camera image.
-![Figure 2](./Cropping_Example.png)Figure 2: Example of the pre and post cropped camera image.
+![Figure 2](./Figuress/Cropping_Example.png)Figure 2: Example of the pre and post cropped camera image.
 
 The cropped image was then normalized as follows:
       normalized image = (cropped image)/255.0 - 0.5
@@ -27,7 +27,7 @@ Other forms of image manipulation such as histogram equalization or converstion 
 
 ### 2. Overfitting reduction
 An early stopping callback was used to mitigate the possibility of overfitting the data. If the change in the validation loss was less than 0.001 between successive epochs, then the early stopping callback which terminated the fitting (training) of the model.  Figure 3 shows the training and validation loss as a function of epoch for the final trained case.
-![Figure 3](./Loss_History.png)Figure 3: Loss as a function of epoch
+![Figure 3](./Figures/Loss_History.png)Figure 3: Loss as a function of epoch
 
 Dropouts (with k=0.5) were placed between each of the convolution layers at the output of the last convolution layer in an effort to prevent overtraining.  However for each test where dropouts were used the car steering was worse.  Hence, no dropout layers were used in the final model.
 
